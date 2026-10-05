@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Baker English">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#8B4513">
+    <meta name="format-detection" content="telephone=no">
+    <title>Baker's English Pro</title>
+    
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='bg-bread' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23D2691E'/%3E%3Cstop offset='100%25' style='stop-color:%238B4513'/%3E%3C/linearGradient%3E%3ClinearGradient id='crust' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23D4A574'/%3E%3Cstop offset='50%25' style='stop-color:%23C49A6C'/%3E%3Cstop offset='100%25' style='stop-color:%23A67C52'/%3E%3C/linearGradient%3E%3ClinearGradient id='score-line' x1='0%25' y1='0%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' style='stop-color:%238B4513'/%3E%3Cstop offset='50%25' style='stop-color:%23A0522D'/%3E%3Cstop offset='100%25' style='stop-color:%238B4513'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='512' height='512' rx='100' fill='url(%23bg-bread)'/%3E%3C!-- Main baguette body --%3E%3Cpath d='M80 280 Q100 200 180 180 Q320 140 420 200 Q450 230 440 280 Q420 340 300 360 Q160 380 100 340 Q70 310 80 280 Z' fill='url(%23crust)'/%3E%3C!-- Score lines --%3E%3Cpath d='M140 240 Q150 220 160 240 Q170 260 160 265' stroke='%236B4423' stroke-width='8' fill='none' stroke-linecap='round'/%3E%3Cpath d='M210 220 Q220 195 235 220 Q250 250 235 255' stroke='%236B4423' stroke-width='8' fill='none' stroke-linecap='round'/%3E%3Cpath d='M290 210 Q300 185 315 210 Q330 240 315 248' stroke='%236B4423' stroke-width='8' fill='none' stroke-linecap='round'/%3E%3Cpath d='M370 220 Q380 200 395 225 Q410 255 395 262' stroke='%236B4423' stroke-width='8' fill='none' stroke-linecap='round'/%3E%3C!-- Highlight --%3E%3Cellipse cx='260' cy='220' rx='80' ry='25' fill='%23E8C99B' opacity='0.4'/%3E%3C!-- Steam lines --%3E%3Cpath d='M150 150 Q160 130 150 110' stroke='%23FFF8E1' stroke-width='4' fill='none' opacity='0.6' stroke-linecap='round'/%3E%3Cpath d='M200 140 Q210 115 200 90' stroke='%23FFF8E1' stroke-width='4' fill='none' opacity='0.6' stroke-linecap='round'/%3E%3Cpath d='M280 135 Q290 110 280 85' stroke='%23FFF8E1' stroke-width='4' fill='none' opacity='0.6' stroke-linecap='round'/%3E%3Cpath d='M360 140 Q370 120 360 100' stroke='%23FFF8E1' stroke-width='4' fill='none' opacity='0.6' stroke-linecap='round'/%3E%3C!-- Wheat decoration --%3E%3Cellipse cx='420' cy='400' rx='35' ry='15' fill='%23DAA520' transform='rotate(-30 420 400)'/%3E%3Cellipse cx='435' cy='420' rx='30' ry='12' fill='%23DAA520' transform='rotate(-30 435 420)'/%3E%3Cellipse cx='450' cy='440' rx='25' ry='10' fill='%23DAA520' transform='rotate(-30 450 440)'/%3E%3Cpath d='M400 380 Q410 420 420 460' stroke='%23B8860B' stroke-width='3' fill='none'/%3E%3C!-- Second wheat --%3E%3Cellipse cx='80' cy='420' rx='35' ry='15' fill='%23DAA520' transform='rotate(30 80 420)'/%3E%3Cellipse cx='65' cy='440' rx='30' ry='12' fill='%23DAA520' transform='rotate(30 65 440)'/%3E%3Cpath d='M90 400 Q80 440 70 470' stroke='%23B8860B' stroke-width='3' fill='none'/%3E%3C/svg%3E">
+    
+    <style>
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html, body { 
+            touch-action: manipulation;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; 
+            background: linear-gradient(180deg, #FFF8E1 0%, #FFE0B2 100%);
+            margin: 0; 
+            padding: 0; 
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            color: #333; 
+            overflow-x: hidden;
+        }
+
+        #home-screen { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            padding: 20px; 
+            padding-top: env(safe-area-inset-top, 20px);
+            padding-bottom: env(safe-area-inset-bottom, 20px);
+            text-align: center; 
+        }
+        #home-screen h1 { font-size: 1.8rem; color: #8B4513; margin-bottom: 8px; }
+        .subtitle { color: #666; margin-bottom: 24px; }
+        .image-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; max-width: 320px; margin-bottom: 24px; }
+        .image-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 16px; }
+        .btn-start { 
+            background: linear-gradient(135deg, #D2691E, #8B4513); 
+            color: white; 
+            border: none; 
+            padding: 16px 40px; 
+            font-size: 1.1rem; 
+            border-radius: 30px; 
+            font-weight: bold; 
+            cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .btn-start:active { transform: scale(0.95); }
+
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 18px;
+            margin-bottom: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        #game-screen { display: none; flex-direction: column; min-height: 100vh; min-height: -webkit-fill-available; }
+        
+        header { background: white; border-bottom: 1px solid #E5E7EB; padding: 12px 16px; padding-top: max(12px, env(safe-area-inset-top)); }
+        .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .header-title { font-size: 1rem; font-weight: bold; color: #8B4513; }
+        .btn-home { background: none; border: none; font-size: 1.5rem; cursor: pointer; padding: 8px; -webkit-appearance: none; }
+
+        .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .level-info { display: flex; align-items: center; gap: 8px; }
+        .level-icon { font-size: 1.5rem; }
+        .level-name { font-weight: bold; font-size: 0.85rem; color: #8B4513; }
+        .xp-count { font-weight: bold; color: #8B4513; font-size: 0.9rem; }
+
+        .progress-bar-container { 
+            width: 100%; 
+            height: 28px; 
+            border-radius: 10px; 
+            background: linear-gradient(90deg, #FFF8E1, #FFE0B2);
+            border: 2px solid #D2691E;
+            overflow: hidden;
+            position: relative;
+        }
+        .progress-bar-fill { 
+            height: 100%; 
+            background: linear-gradient(90deg, #D2691E, #8B4513);
+            transition: width 0.5s;
+            position: relative;
+        }
+        .progress-baguette {
+            position: absolute;
+            top: 2px;
+            right: -16px;
+            transform: translateX(-100%);
+            transition: left 0.5s;
+        }
+        
+        .level-labels { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-top: 6px;
+            padding: 0 2px;
+        }
+        .level-label { 
+            font-size: 0.6rem; 
+            color: #9CA3AF;
+            text-align: center;
+            flex: 1;
+            transition: all 0.3s;
+        }
+        .level-label.current { 
+            color: #8B4513; 
+            font-weight: bold;
+            font-size: 0.7rem;
+        }
+        .level-label.passed { color: #D2691E; }
+
+        .menu-scroll { display: flex; overflow-x: auto; padding: 10px 16px; gap: 8px; background: white; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+        .menu-btn { 
+            background: #F3F4F6; 
+            border: 2px solid #E5E7EB; 
+            padding: 8px 14px; 
+            border-radius: 20px; 
+            font-size: 0.8rem; 
+            font-weight: 600; 
+            cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+            flex-shrink: 0;
+        }
+        .menu-btn.active { background: #D2691E; color: white; border-color: #D2691E; }
+        .menu-btn.purple.active { background: #8b5cf6; border-color: #8b5cf6; }
+        .menu-btn.gold.active { background: #D97706; border-color: #D97706; color: white; }
+
+        main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 16px; padding-bottom: max(16px, env(safe-area-inset-bottom)); }
+        .game-area { 
+            background: white; 
+            width: 100%; 
+            max-width: 420px; 
+            padding: 20px; 
+            border-radius: 20px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            min-height: 320px;
+        }
+
+        .card-counter {
+            background: linear-gradient(135deg, #FFF8E1, #FFE0B2);
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #8B4513;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+        
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .quiz-number {
+            background: #8B4513;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .quiz-theme {
+            font-size: 0.75rem;
+            color: #6B7280;
+        }
+
+        .flashcard { 
+            min-height: 240px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+        .flashcard-front { background: #F9FAFB; border: 2px solid #E5E7EB; }
+        .flashcard-back { background: linear-gradient(135deg, #FFF8E1, #FFE0B2); border: 2px solid #D2691E; }
+        .card-label { font-size: 0.7rem; text-transform: uppercase; color: #9CA3AF; margin-bottom: 8px; }
+        .card-word { font-size: 1.8rem; font-weight: 800; margin: 8px 0; }
+        .flashcard-front .card-word { color: #1F2937; }
+        .flashcard-back .card-word { color: #8B4513; }
+        .card-example { font-style: italic; color: #6B7280; font-size: 0.9rem; margin-top: 8px; }
+        .card-hint { font-size: 0.75rem; color: #9CA3AF; margin-top: 16px; }
+
+        .controls { display: flex; justify-content: center; gap: 12px; }
+        .btn-icon { width: 44px; height: 44px; border-radius: 50%; border: 2px solid #E5E7EB; background: white; font-size: 1rem; cursor: pointer; -webkit-appearance: none; }
+        .btn-next { background: #8B4513; color: white; border: none; padding: 12px 24px; border-radius: 24px; font-weight: bold; cursor: pointer; -webkit-appearance: none; }
+
+        .quiz-word { font-size: 1.8rem; font-weight: bold; margin-bottom: 20px; }
+        .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .quiz-btn { 
+            background: #F9FAFB; 
+            border: 2px solid #E5E7EB; 
+            padding: 14px 10px; 
+            border-radius: 12px; 
+            cursor: pointer; 
+            font-weight: 600;
+            font-size: 0.9rem;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .quiz-btn:active { background: #FEE2E2; border-color: #EF4444; }
+        .quiz-btn.correct { background: #D1FAE5; border-color: #10B981; color: #065F46; }
+        .quiz-btn.wrong { background: #FEE2E2; border-color: #EF4444; color: #991B1B; }
+        .quiz-btn:disabled { cursor: default; opacity: 0.8; }
+
+        /* Styles pour le mode Association */
+        .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+        .match-column { display: flex; flex-direction: column; gap: 8px; }
+        .match-item {
+            background: #F9FAFB;
+            border: 2px solid #E5E7EB;
+            padding: 12px 8px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .match-item.selected { background: #ede9fe; border-color: #8b5cf6; color: #6d28d9; }
+
+        .feedback { margin-top: 16px; padding: 12px; border-radius: 12px; font-weight: 600; }
+        .feedback.success { background: #D1FAE5; color: #065F46; }
+        .feedback.error { background: #FEE2E2; color: #991B1B; }
+        .btn-action { width: 100%; padding: 12px; border-radius: 24px; border: none; font-weight: bold; cursor: pointer; margin-top: 12px; -webkit-appearance: none; appearance: none; }
+        .btn-action.success { background: #10B981; color: white; }
+        .btn-action.error { background: #EF4444; color: white; }
+        .btn-action.primary { background: #8B4513; color: white; }
+        .btn-action.purple { background: #8b5cf6; color: white; }
+        .btn-action.gold { background: #D97706; color: white; }
+
+        .audio-btn { 
+            width: 90px; height: 90px; 
+            border-radius: 50%; 
+            background: linear-gradient(135deg, #D2691E, #8B4513); 
+            border: none; 
+            color: white; 
+            font-size: 2rem; 
+            cursor: pointer; 
+            margin: 16px auto;
+            display: block;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .audio-btn:active { transform: scale(0.95); }
+
+        .scenario-box { background: linear-gradient(135deg, #FFF8E1, #FFE0B2); padding: 12px; border-radius: 12px; margin-bottom: 16px; text-align: left; }
+        .scenario-title { font-weight: bold; color: #8B4513; font-size: 0.8rem; margin-bottom: 6px; }
+        .dialogue { background: white; padding: 10px; border-radius: 8px; font-style: italic; color: #6B7280; }
+
+        .badge-grid { display: grid; grid-template-columns: 1fr; gap: 10px; max-height: 380px; overflow-y: auto; padding-right: 4px; }
+        .badge-card { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 12px; background: #F9FAFB; border: 2px solid #E5E7EB; text-align: left; }
+        .badge-card.unlocked { background: linear-gradient(135deg, #FFFBEB, #FEF3C7); border-color: #F59E0B; }
+        .badge-icon-box { font-size: 1.8rem; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: white; border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.08); flex-shrink: 0; }
+        .badge-card:not(.unlocked) .badge-icon-box { filter: grayscale(1); opacity: 0.4; }
+        .badge-title { font-weight: bold; font-size: 0.85rem; color: #1F2937; margin-bottom: 2px; }
+        .badge-card.unlocked .badge-title { color: #92400E; }
+        .badge-desc { font-size: 0.75rem; color: #6B7280; }
+
+        .translation-category {
+            font-size: 0.75rem;
+            color: #8b5cf6;
+            background: rgba(139, 92, 246, 0.2);
+            padding: 4px 10px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .mode-label {
+            font-size: 0.7rem;
+            color: #D2691E;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .mode-label.gold { color: #D97706; }
+
+        .xp_popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            z-index: 1000;
+            animation: xpFadeIn 0.3s ease;
+        }
+        @keyframes xpFadeIn {
+            from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="home-screen">
+        <svg class="app-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="bg-bread-home" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#D2691E"/>
+                    <stop offset="100%" style="stop-color:#8B4513"/>
+                </linearGradient>
+                <linearGradient id="crust-home" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#D4A574"/>
+                    <stop offset="50%" style="stop-color:#C49A6C"/>
+                    <stop offset="100%" style="stop-color:#A67C52"/>
+                </linearGradient>
+            </defs>
+            <rect width="512" height="512" rx="100" fill="url(#bg-bread-home)"/>
+            <path d="M80 280 Q100 200 180 180 Q320 140 420 200 Q450 230 440 280 Q420 340 300 360 Q160 380 100 340 Q70 310 80 280 Z" fill="url(#crust-home)"/>
+            <path d="M140 240 Q150 220 160 240 Q170 260 160 265" stroke="#6B4423" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <path d="M210 220 Q220 195 235 220 Q250 250 235 255" stroke="#6B4423" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <path d="M290 210 Q300 185 315 210 Q330 240 315 248" stroke="#6B4423" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <path d="M370 220 Q380 200 395 225 Q410 255 395 262" stroke="#6B4423" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <ellipse cx="260" cy="220" rx="80" ry="25" fill="#E8C99B" opacity="0.4"/>
+            <path d="M150 150 Q160 130 150 110" stroke="#FFF8E1" stroke-width="4" fill="none" opacity="0.6" stroke-linecap="round"/>
+            <path d="M200 140 Q210 115 200 90" stroke="#FFF8E1" stroke-width="4" fill="none" opacity="0.6" stroke-linecap="round"/>
+            <path d="M280 135 Q290 110 280 85" stroke="#FFF8E1" stroke-width="4" fill="none" opacity="0.6" stroke-linecap="round"/>
+            <path d="M360 140 Q370 120 360 100" stroke="#FFF8E1" stroke-width="4" fill="none" opacity="0.6" stroke-linecap="round"/>
+            <ellipse cx="420" cy="400" rx="35" ry="15" fill="#DAA520" transform="rotate(-30 420 400)"/>
+            <ellipse cx="435" cy="420" rx="30" ry="12" fill="#DAA520" transform="rotate(-30 435 420)"/>
+            <ellipse cx="450" cy="440" rx="25" ry="10" fill="#DAA520" transform="rotate(-30 450 440)"/>
+            <path d="M400 380 Q410 420 420 460" stroke="#B8860B" stroke-width="3" fill="none"/>
+            <ellipse cx="80" cy="420" rx="35" ry="15" fill="#DAA520" transform="rotate(30 80 420)"/>
+            <ellipse cx="65" cy="440" rx="30" ry="12" fill="#DAA520" transform="rotate(30 65 440)"/>
+            <path d="M90 400 Q80 440 70 470" stroke="#B8860B" stroke-width="3" fill="none"/>
+        </svg>
+        <h1>Baker's English Pro</h1>
+        <p class="subtitle">Formation CAP, BP & MC Boulangerie</p>
+        
+        <div class="image-grid">
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80" alt="Pains">
+            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400&q=80" alt="Croissants">
+        </div>
+        
+        <div id="home-progress"></div>
+        
+        <button class="btn-start" id="start-btn">Commencer la formation</button>
+        
+        <p style="font-size: 0.7rem; color: #9CA3AF; margin-top: 20px;">
+            Ajoutez à votre écran d'accueil
+        </p>
+    </div>
+
+    <div id="game-screen">
+        <header>
+            <div class="header-top">
+                <button class="btn-home" id="home-btn">🏠</button>
+                <span class="header-title">Baker's English Pro</span>
+                <div style="width:30px;"></div>
+            </div>
+            
+            <div class="progress-header">
+                <div class="level-info">
+                    <span class="level-icon" id="lvl-icon">👶</span>
+                    <span class="level-name" id="lvl-name">Niveau 1 · Apprenti</span>
+                </div>
+                <span class="xp-count" id="xp-display">0 XP</span>
+            </div>
+            
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progress-fill" style="width: 0%;">
+                    <div class="progress-baguette" id="progress-baguette">🥖</div>
+                </div>
+            </div>
+            
+            <div class="level-labels" id="level-labels"></div>
+        </header>
+
+        <nav class="menu-scroll" id="mode-menu"></nav>
+        <nav class="menu-scroll" id="theme-menu"></nav>
+
+        <main>
+            <div class="game-area" id="game-area"></div>
+        </main>
+    </div>
+
+    <script>
+        const DATABASE = {
+            "Ingrédients": [
+                { fr: "La farine", en: "Flour", ex: "Sieve the flour into a bowl." },
+                { fr: "La farine tradition T65", en: "Traditional flour T65", ex: "Use T65 for baguettes." },
+                { fr: "La farine T55", en: "Flour T55", ex: "T55 for country bread." },
+                { fr: "La farine complète T150", en: "Wholemeal flour T150", ex: "Wholemeal flour for healthy bread." },
+                { fr: "La farine de seigle T130", en: "Rye flour T130", ex: "Rye flour for dark bread." },
+                { fr: "L'eau", en: "Water", ex: "Add cold water gradually." },
+                { fr: "Le sel", en: "Salt", ex: "Salt improves the flavor." },
+                { fr: "La levure fraîche", en: "Fresh yeast", ex: "Crumble the fresh yeast." },
+                { fr: "La levure sèche", en: "Dry yeast", ex: "Activate the dry yeast." },
+                { fr: "Le levain liquide", en: "Liquid sourdough starter", ex: "Add liquid sourdough." },
+                { fr: "Le levain", en: "Sourdough starter", ex: "Feed the sourdough starter." },
+                { fr: "Le sucre", en: "Sugar", ex: "Add sugar for brioche." },
+                { fr: "Le beurre d'incorporation", en: "Incorporation butter", ex: "Add soft butter to dough." },
+                { fr: "Le beurre de tourage", en: "Laminating butter", ex: "Use cold butter for laminating." },
+                { fr: "Les œufs", en: "Eggs", ex: "Whisk the eggs." },
+                { fr: "Le lait", en: "Milk", ex: "Warm the milk." },
+                { fr: "La poudre de lait", en: "Milk powder", ex: "Milk powder enriches the dough." },
+                { fr: "Le gluten de blé", en: "Wheat gluten", ex: "Add gluten for rye bread." },
+                { fr: "La pâte fermentée", en: "Fermented dough", ex: "Add fermented dough for flavor." }
+            ],
+            "Pains": [
+                { fr: "La baguette tradition", en: "Traditional baguette", ex: "A crispy traditional baguette." },
+                { fr: "Le pain de campagne", en: "Country bread", ex: "Rustic country bread with rye." },
+                { fr: "Le pain complet", en: "Wholemeal bread", ex: "Healthy wholemeal bread T150." },
+                { fr: "Le pain de mie", en: "Sandwich bread", ex: "Soft bread for sandwiches." },
+                { fr: "Le pain viennois", en: "Vienna bread", ex: "Sweet enriched bread." },
+                { fr: "Le pain de seigle", en: "Rye bread", ex: "Dark rye bread T130." },
+                { fr: "La baguette", en: "Baguette", ex: "A crispy baguette." },
+                { fr: "La ficelle", en: "Thin baguette", ex: "A thin crispy ficelle." },
+                { fr: "Le boule", en: "Round loaf", ex: "A round crusty loaf." },
+                { fr: "L'épi", en: "Wheat stalk bread", ex: "Shaped like a wheat stalk." }
+            ],
+            "Pâtes Levées": [
+                { fr: "La pâte levée feuilletée", en: "Laminated yeast dough", ex: "For croissants and pastries." },
+                { fr: "La levée briochée pâte", en: "Brioche dough", ex: "Rich dough with butter and eggs." },
+                { fr: "La détrempe", en: "Dough base", ex: "Make the détrempe first." },
+                { fr: "Le tourage", en: "Laminating", ex: "Give folds to the dough." },
+                { fr: "Le beurre de tourage", en: "Laminating butter", ex: "Cold butter for layers." },
+                { fr: "Le pointage", en: "First fermentation", ex: "Let dough rise at room temperature." },
+                { fr: "L'apprêt", en: "Final proof", ex: "Final proof before baking." },
+                { fr: "La division", en: "Dividing", ex: "Divide into equal pieces." },
+                { fr: "Le façonnage", en: "Shaping", ex: "Shape the loaves." },
+                { fr: "La détente", en: "Relaxing", ex: "Let dough relax before shaping." }
+            ],
+            "Étapes de Fabrication": [
+                { fr: "Le frasage", en: "Mixing stage 1", ex: "Frasage: mix flour and water." },
+                { fr: "Le pétrissage", en: "Kneading", ex: "Knead the dough properly." },
+                { fr: "La température de base", en: "Base temperature", ex: "Base temperature is 52-64°C." },
+                { fr: "Le pointage", en: "First rise", ex: "First rise in the tub." },
+                { fr: "Le rabat", en: "Punch down", ex: "Punch down the dough." },
+                { fr: "La fermentation", en: "Fermentation", ex: "Fermentation develops flavor." },
+                { fr: "La pesée", en: "Weighing", ex: "Weigh dough pieces." },
+                { fr: "Le boulage", en: "Rounding", ex: "Round the dough pieces." },
+                { fr: "La cuisson", en: "Baking", ex: "Bake at 240°C." },
+                { fr: "Le dépôt", en: "Loading", ex: "Load bread into oven." },
+                { fr: "Le ressuage", en: "Cooling", ex: "Cool bread on racks." },
+                { fr: "La cuisson chaleur tombante", en: "Falling heat baking", ex: "Start hot, then lower temperature." }
+            ],
+            "Viennoiseries": [
+                { fr: "Le croissant", en: "Croissant", ex: "Buttery croissant." },
+                { fr: "Le pain au chocolat", en: "Pain au chocolat", ex: "Chocolate croissant." },
+                { fr: "Le pain aux raisins", en: "Raisin swirl", ex: "Spiral raisin pastry." },
+                { fr: "La brioche", en: "Brioche", ex: "Soft and buttery brioche." },
+                { fr: "Le chausson aux pommes", en: "Apple turnover", ex: "Apple-filled pastry." },
+                { fr: "Le pain au lait", en: "Milk bread", ex: "Soft milk bread roll." },
+                { fr: "Le croissant aux amandes", en: "Almond croissant", ex: "Filled with almond cream." },
+                { fr: "Le kouign-amann", en: "Butter cake", ex: "Breton butter cake." },
+                { fr: "Le pain suisse", en: "Swiss brioche", ex: "Sweet Swiss-style brioche." }
+            ],
+            "Outils": [
+                { fr: "Le four", en: "Oven", ex: "Preheat the oven." },
+                { fr: "Le pétrin", en: "Mixer", ex: "Use the spiral mixer." },
+                { fr: "La chambre de pousse", en: "Proofer", ex: "Put dough in the proofer." },
+                { fr: "Le rouleau", en: "Rolling pin", ex: "Roll with a rolling pin." },
+                { fr: "La balance", en: "Scale", ex: "Weigh on the scale." },
+                { fr: "Le tamis", en: "Sieve", ex: "Sieve the flour." },
+                { fr: "La pelle", en: "Peel", ex: "Slide onto the peel." },
+                { fr: "Le coupe-pâte", en: "Dough scraper", ex: "Use a dough scraper." },
+                { fr: "La grille", en: "Cooling rack", ex: "Cool on the rack." },
+                { fr: "Le couteau", en: "Knife", ex: "Sharp knife for scoring." },
+                { fr: "La bassine", en: "Tub", ex: "Fermentation tub." },
+                { fr: "Le torchon", en: "Cloth", ex: "Cover with a cloth." },
+                { fr: "La cellule de refroidissement", en: "Blast chiller", ex: "Cool quickly in blast chiller." }
+            ],
+            "Verbes Techniques": [
+                { fr: "Pétrir", en: "Knead", ex: "Knead the dough." },
+                { fr: "Façonner", en: "Shape", ex: "Shape the loaf." },
+                { fr: "Cuire", en: "Bake", ex: "Bake for 25 minutes." },
+                { fr: "Peser", en: "Weigh", ex: "Weigh ingredients." },
+                { fr: "Diviser", en: "Divide", ex: "Divide into pieces." },
+                { fr: "Grigner", en: "Score", ex: "Score the top." },
+                { fr: "Dorer", en: "Glaze", ex: "Glaze with egg wash." },
+                { fr: "Mélanger", en: "Mix", ex: "Mix thoroughly." },
+                { fr: "Incorporer", en: "Fold in", ex: "Fold in the butter." },
+                { fr: "Laisser lever", en: "Let rise", ex: "Let the dough rise." },
+                { fr: "Abaisser", en: "Roll out", ex: "Roll out the dough." },
+                { fr: "Tourer", en: "Fold / Laminate", ex: "Give three folds." },
+                { fr: "Enfourner", en: "Load", ex: "Load into the oven." },
+                { fr: "Défourner", en: "Unload", ex: "Unload from the oven." },
+                { fr: "Fraser", en: "Mix initially", ex: "Frasage: initial mixing." },
+                { fr: "Bouler", en: "Round", ex: "Round the dough." },
+                { fr: "Détendre", en: "Relax", ex: "Let dough relax." }
+            ],
+            "Crèmes & Garnitures": [
+                { fr: "La crème pâtissière", en: "Pastry cream", ex: "Fill pastries with cream." },
+                { fr: "Le lait", en: "Milk", ex: "Boil one liter of milk." },
+                { fr: "La poudre à crème", en: "Custard powder", ex: "Thicken with custard powder." },
+                { fr: "Le sucre", en: "Sugar", ex: "Add 250g of sugar." },
+                { fr: "La pâte morte", en: "Dead dough", ex: "Decoration dough." },
+                { fr: "La gélatine", en: "Gelatin", ex: "Soften gelatin in water." },
+                { fr: "Le nappage", en: "Glaze", ex: "Brush with glaze." }
+            ],
+            "Qualité & Hygiène": [
+                { fr: "La croûte", en: "Crust", ex: "A crispy crust." },
+                { fr: "La mie", en: "Crumb", ex: "Soft and airy crumb." },
+                { fr: "L'alvéolage", en: "Crumb structure", ex: "Open crumb structure." },
+                { fr: "Le développement", en: "Oven spring", ex: "Good oven spring." },
+                { fr: "La couleur", en: "Color", ex: "Golden brown color." },
+                { fr: "L'odeur", en: "Smell", ex: "Freshly baked smell." },
+                { fr: "La fraîcheur", en: "Freshness", ex: "Maintain freshness." },
+                { fr: "La DLC", en: "Best before date", ex: "Check the date." },
+                { fr: "L'hygiène", en: "Hygiene", ex: "Follow hygiene rules." },
+                { fr: "Le nettoyage", en: "Cleaning", ex: "Clean the work surface." },
+                { fr: "La charlotte", en: "Hairnet", ex: "Wear a hairnet." },
+                { fr: "Le tablier", en: "Apron", ex: "Put on your apron." }
+            ]
+        };
+
+        const LISTENING = [
+            { audio: "Sieve the flour into a large bowl.", answer: "🌾", hint: "Flour", category: "Ingrédients" },
+            { audio: "Add cold water gradually.", answer: "💧", hint: "Water", category: "Ingrédients" },
+            { audio: "Crumble the fresh yeast.", answer: "🧫", hint: "Yeast", category: "Ingrédients" },
+            { audio: "Feed the sourdough starter.", answer: "🥖", hint: "Sourdough", category: "Ingrédients" },
+            { audio: "Use cold butter for puff pastry.", answer: "🧈", hint: "Butter", category: "Ingrédients" },
+            { audio: "Warm the milk to room temperature.", answer: "🥛", hint: "Milk", category: "Ingrédients" },
+            { audio: "Knead the dough for ten minutes.", answer: "✋", hint: "Knead", category: "Techniques" },
+            { audio: "Shape the loaves carefully.", answer: "🤲", hint: "Shape", category: "Techniques" },
+            { audio: "Preheat the oven to 240 degrees.", answer: "🔥", hint: "Oven/Bake", category: "Techniques" },
+            { audio: "Score the top of the loaf.", answer: "🔪", hint: "Score", category: "Techniques" },
+            { audio: "Let the dough rise for two hours.", answer: "📈", hint: "Rise", category: "Techniques" },
+            { audio: "Divide the dough into equal pieces.", answer: "➗", hint: "Divide", category: "Techniques" },
+            { audio: "Roll out the pastry thinly.", answer: "📐", hint: "Roll out", category: "Techniques" },
+            { audio: "Fold in the butter gradually.", answer: "🧈", hint: "Fold in", category: "Techniques" },
+            { audio: "Load the bread into the oven.", answer: "🔥", hint: "Load", category: "Techniques" },
+            { audio: "Two croissants, please.", answer: "🥐", hint: "Croissant", category: "Viennoiseries" },
+            { audio: "This brioche is so soft.", answer: "🧁", hint: "Brioche", category: "Viennoiseries" },
+            { audio: "This bread has a crispy crust.", answer: "🥖", hint: "Crust", category: "Qualité" },
+            { audio: "The crumb is soft and airy.", answer: "☁️️", hint: "Crumb", category: "Qualité" }
+        ];
+
+        const ROLEPLAY = [
+            { scene: "Vente", ctx: "Client: 'I'd like a baguette, please.'", opts: ["We are closed.", "Here is a fresh baguette!", "Too expensive."], correctIdx: 1, fb: "Présentez le produit avec enthousiasme!" },
+            { scene: "Vente", ctx: "Client: 'Do you have any sourdough bread?'", opts: ["Yes, we baked it this morning!", "No, only white bread.", "What is sourdough?"], correctIdx: 0, fb: "Valorisez la fraîcheur de vos produits!" },
+            { scene: "Vente", ctx: "Client: 'What do you recommend for breakfast?'", opts: ["Nothing today.", "We don't serve breakfast.", "Our croissants are buttery and fresh!"], correctIdx: 2, fb: "Suggérez des produits adaptés!" },
+            { scene: "Vente", ctx: "Client: 'Is this bread gluten-free?'", opts: ["I don't know.", "No, it contains wheat flour.", "Yes, all bread is gluten-free."], correctIdx: 1, fb: "Informez correctement sur les allergènes!" },
+            { scene: "Service", ctx: "Client: 'Can you slice this bread?'", opts: ["Of course! I'll slice it for you.", "No, we don't do that.", "Do it yourself."], correctIdx: 0, fb: "Offrez toujours votre aide!" },
+            { scene: "Service", ctx: "Client: 'This croissant is not fresh.'", opts: ["It was baked yesterday.", "No complaints accepted.", "Sorry about that. Let me replace it."], correctIdx: 2, fb: "Gérez les réclamations professionnellement!" },
+            { scene: "Conseil", ctx: "Client: 'How should I store this bread?'", opts: ["In the refrigerator.", "In a plastic bag.", "In a paper bag at room temperature."], correctIdx: 2, fb: "Conseillez sur la conservation!" },
+            { scene: "Conseil", ctx: "Client: 'Which bread is best for sandwiches?'", opts: ["Any bread is fine.", "Our country loaf is perfect!", "We don't make sandwiches."], correctIdx: 1, fb: "Recommandez selon l'usage!" }
+        ];
+
+        const RECIPES = [
+            { name: "Traditional Baguette", steps: ["Mix flour and water", "Add salt and yeast", "Knead 10 minutes", "Ferment 1 hour", "Divide and shape", "Final proof", "Score and bake"] },
+            { name: "Butter Croissant", steps: ["Make détrempe", "Prepare butter block", "Give 3 folds", "Roll and cut", "Shape crescents", "Proof overnight", "Bake golden"] },
+            { name: "Brioche", steps: ["Warm milk and yeast", "Add flour and eggs", "Knead until smooth", "Add butter gradually", "Ferment 2 hours", "Shape in molds", "Glaze and bake"] },
+            { name: "Pastry Cream", steps: ["Boil milk with sugar", "Whisk yolks and sugar", "Add custard powder", "Pour hot milk", "Cook until thick", "Cool with film"] },
+            { name: "Country Bread", steps: ["Mix flours", "Add water and levain", "Knead properly", "First fermentation", "Divide and shape", "Final proof", "Bake with steam"] }
+        ];
+
+        const translationDatabase = {
+            "Pâtes Levées Feuilletées": [
+                { fr: "Pâte levée feuilletée", en: "Laminated yeast dough", ex: "For croissants and pastries." },
+                { fr: "La détrempe", en: "Dough base", ex: "Make the détrempe first." },
+                { fr: "Le tourage", en: "Laminating", ex: "Give folds to the dough." },
+                { fr: "Le beurre de tourage", en: "Laminating butter", ex: "Use cold butter for layers." },
+                { fr: "Le pointage", en: "First fermentation", ex: "Let dough rise at room temperature." },
+                { fr: "L'apprêt", en: "Final proof", ex: "Final proof before baking." },
+                { fr: "La division", en: "Dividing", ex: "Divide into equal pieces." },
+                { fr: "Le façonnage", en: "Shaping", ex: "Shape the loaves." },
+                { fr: "La détente", en: "Relaxing", ex: "Let dough relax before shaping." }
+            ],
+            "Levée Briochée": [
+                { fr: "Levée briochée pâte", en: "Brioche dough", ex: "Rich dough with butter and eggs." },
+                { fr: "La pâte fermentée", en: "Fermented dough", ex: "Add fermented dough for flavor." },
+                { fr: "Le levain liquide", en: "Liquid sourdough starter", ex: "Add liquid sourdough." },
+                { fr: "Le beurre d'incorporation", en: "Incorporation butter", ex: "Add soft butter to dough." },
+                { fr: "La poudre de lait", en: "Milk powder", ex: "Milk powder enriches the dough." }
+            ],
+            "Pains Traditionnels": [
+                { fr: "La baguette tradition", en: "Traditional baguette", ex: "A crispy traditional baguette." },
+                { fr: "Le pain de campagne", en: "Country bread", ex: "Rustic country bread with rye." },
+                { fr: "Le pain complet", en: "Wholemeal bread", ex: "Healthy wholemeal bread T150." },
+                { fr: "Le pain de mie", en: "Sandwich bread", ex: "Soft bread for sandwiches." },
+                { fr: "Le pain viennois", en: "Vienna bread", ex: "Sweet enriched bread." },
+                { fr: "Le pain de seigle", en: "Rye bread", ex: "Dark rye bread T130." },
+                { fr: "La ficelle", en: "Thin baguette", ex: "A thin crispy ficelle." },
+                { fr: "Le boule", en: "Round loaf", ex: "A round crusty loaf." },
+                { fr: "L'épi", en: "Wheat stalk bread", ex: "Shaped like a wheat stalk." }
+            ],
+            "Étapes de Panification": [
+                { fr: "Le frasage", en: "Initial mixing", ex: "Frasage: mix flour and water." },
+                { fr: "Le pétrissage", en: "Kneading", ex: "Knead the dough properly." },
+                { fr: "La température de base", en: "Base temperature", ex: "Base temperature is 52-64°C." },
+                { fr: "Le pointage", en: "First rise", ex: "First rise in the tub." },
+                { fr: "Le rabat", en: "Punch down", ex: "Punch down the dough." },
+                { fr: "La fermentation", en: "Fermentation", ex: "Fermentation develops flavor." },
+                { fr: "La pesée", en: "Weighing", ex: "Weigh dough pieces." },
+                { fr: "Le boulage", en: "Rounding", ex: "Round the dough pieces." },
+                { fr: "La cuisson", en: "Baking", ex: "Bake at 240°C." },
+                { fr: "Le dépôt", en: "Loading", ex: "Load bread into oven." },
+                { fr: "Le ressuage", en: "Cooling", ex: "Cool bread on racks." },
+                { fr: "La cuisson chaleur tombante", en: "Falling heat baking", ex: "Start hot, then lower temperature." },
+                { fr: "La détente", en: "Resting period", ex: "Let dough rest 10-15 minutes." },
+                { fr: "L'apprêt", en: "Final proof", ex: "Final proof before baking." }
+            ],
+            "Types de Farine": [
+                { fr: "La farine tradition T65", en: "Traditional flour T65", ex: "Use T65 for baguettes." },
+                { fr: "La farine T55", en: "Flour T55", ex: "T55 for country bread." },
+                { fr: "La farine complète T150", en: "Wholemeal flour T150", ex: "Wholemeal flour for healthy bread." },
+                { fr: "La farine de seigle T130", en: "Rye flour T130", ex: "Rye flour for dark bread." }
+            ],
+            "Viennoiserie": [
+                { fr: "Le croissant", en: "Croissant", ex: "Buttery croissant." },
+                { fr: "Le pain au chocolat", en: "Pain au chocolat", ex: "Chocolate croissant." },
+                { fr: "Le pain aux raisins", en: "Raisin swirl", ex: "Spiral raisin pastry." },
+                { fr: "La brioche", en: "Brioche", ex: "Soft and buttery brioche." },
+                { fr: "Le chausson aux pommes", en: "Apple turnover", ex: "Apple-filled pastry." },
+                { fr: "Le pain au lait", en: "Milk bread", ex: "Soft milk bread roll." },
+                { fr: "Le croissant aux amandes", en: "Almond croissant", ex: "Filled with almond cream." },
+                { fr: "Le kouign-amann", en: "Butter cake", ex: "Breton butter cake." },
+                { fr: "Le pain suisse", en: "Swiss brioche", ex: "Sweet Swiss-style brioche." }
+            ],
+            "Crèmes & Garnitures": [
+                { fr: "La crème pâtissière", en: "Pastry cream", ex: "Fill pastries with cream." },
+                { fr: "La poudre à crème", en: "Custard powder", ex: "Thicken with custard powder." },
+                { fr: "La pâte morte", en: "Dead dough", ex: "Decoration dough." },
+                { fr: "La gélatine", en: "Gelatin", ex: "Soften gelatin in water." },
+                { fr: "Le nappage", en: "Glaze", ex: "Brush with glaze." },
+                { fr: "Le cul de poule", en: "Mixing bowl", ex: "Whisk in a mixing bowl." },
+                { fr: "La cellule de refroidissement", en: "Blast chiller", ex: "Cool quickly in blast chiller." }
+            ],
+            "Outils & Équipement": [
+                { fr: "Le four", en: "Oven", ex: "Preheat the oven." },
+                { fr: "Le pétrin", en: "Mixer", ex: "Use the spiral mixer." },
+                { fr: "La chambre de pousse", en: "Proofer", ex: "Put dough in the proofer." },
+                { fr: "Le rouleau", en: "Rolling pin", ex: "Roll with a rolling pin." },
+                { fr: "La balance", en: "Scale", ex: "Weigh on the scale." },
+                { fr: "Le tamis", en: "Sieve", ex: "Sieve the flour." },
+                { fr: "La pelle", en: "Peel", ex: "Slide onto the peel." },
+                { fr: "Le coupe-pâte", en: "Dough scraper", ex: "Use a dough scraper." },
+                { fr: "La grille", en: "Cooling rack", ex: "Cool on the rack." },
+                { fr: "Le couteau", en: "Knife", ex: "Sharp knife for scoring." },
+                { fr: "La bassine", en: "Tub", ex: "Fermentation tub." },
+                { fr: "Le torchon", en: "Cloth", ex: "Cover with a cloth." },
+                { fr: "Le fouet", en: "Whisk", ex: "Whisk the eggs." },
+                { fr: "La plaque inox", en: "Stainless steel sheet", ex: "Pour cream on the sheet." }
+            ],
+            "Techniques": [
+                { fr: "Pétrir", en: "Knead", ex: "Knead the dough." },
+                { fr: "Façonner", en: "Shape", ex: "Shape the loaf." },
+                { fr: "Cuire", en: "Bake", ex: "Bake for 25 minutes." },
+                { fr: "Peser", en: "Weigh", ex: "Weigh ingredients." },
+                { fr: "Diviser", en: "Divide", ex: "Divide into pieces." },
+                { fr: "Grigner", en: "Score", ex: "Score the top." },
+                { fr: "Dorer", en: "Glaze", ex: "Glaze with egg wash." },
+                { fr: "Mélanger", en: "Mix", ex: "Mix thoroughly." },
+                { fr: "Incorporer", en: "Fold in", ex: "Fold in the butter." },
+                { fr: "Laisser lever", en: "Let rise", ex: "Let the dough rise." },
+                { fr: "Abaisser", en: "Roll out", ex: "Roll out the dough." },
+                { fr: "Tourer", en: "Fold / Laminate", ex: "Give three folds." },
+                { fr: "Enfourner", en: "Load", ex: "Load into the oven." },
+                { fr: "Défourner", en: "Unload", ex: "Unload from the oven." },
+                { fr: "Fraser", en: "Mix initially", ex: "Frasage: initial mixing." },
+                { fr: "Bouler", en: "Round", ex: "Round the dough." },
+                { fr: "Détendre", en: "Relax", ex: "Let dough relax." },
+                { fr: "Blanchir", en: "Whisk until pale", ex: "Blanchir eggs and sugar." },
+                { fr: "Filmer", en: "Cover with film", ex: "Film the cream surface." }
+            ],
+            "Qualité & Hygiène": [
+                { fr: "La croûte", en: "Crust", ex: "A crispy crust." },
+                { fr: "La mie", en: "Crumb", ex: "Soft and airy crumb." },
+                { fr: "L'alvéolage", en: "Crumb structure", ex: "Open crumb structure." },
+                { fr: "Le développement", en: "Oven spring", ex: "Good oven spring." },
+                { fr: "La couleur", en: "Color", ex: "Golden brown color." },
+                { fr: "L'odeur", en: "Smell", ex: "Freshly baked smell." },
+                { fr: "La fraîcheur", en: "Freshness", ex: "Maintain freshness." },
+                { fr: "La DLC", en: "Best before date", ex: "Check the date." },
+                { fr: "L'hygiène", en: "Hygiene", ex: "Follow hygiene rules." },
+                { fr: "Le nettoyage", en: "Cleaning", ex: "Clean the work surface." },
+                { fr: "La charlotte", en: "Hairnet", ex: "Wear a hairnet." },
+                { fr: "Le tablier", en: "Apron", ex: "Put on your apron." }
+            ]
+        };
+
+        const conversionExercises = [
+            { question: "How many ounces (oz) is approximately 450g of flour in an American recipe?", options: ["10 oz", "16 oz (1 lb)", "24 oz", "32 oz"], correct: 1, explanation: "1 pound (lb) is equal to 16 ounces, which is approximately 450 grams." },
+            { question: "Convert 240°C (baking temperature for traditional baguettes) into Fahrenheit (°F).", options: ["400°F", "425°F", "465°F", "500°F"], correct: 2, explanation: "240°C is approximately 465°F (Formula: °C × 9/5 + 32)." },
+            { question: "If a recipe calls for 1 cup of water, approximately how many milliliters (ml) is that?", options: ["150 ml", "240 ml", "350 ml", "500 ml"], correct: 1, explanation: "In American baking measurements, 1 cup of liquid is equal to approximately 240 ml." },
+            { question: "How many pounds (lbs) is equivalent to 1 kilogram (1000g) of sourdough starter?", options: ["Approx. 1.1 lbs", "Approx. 2.2 lbs", "Approx. 3.5 lbs", "Approx. 4.0 lbs"], correct: 1, explanation: "1 kilogram is equal to approximately 2.2 pounds (lbs)." },
+            { question: "What is 350°F (standard American baking temperature for rich doughs) in Celsius (°C)?", options: ["160°C", "175°C", "190°C", "210°C"], correct: 1, explanation: "350°F is equivalent to approximately 175°C." },
+            { question: "How many tablespoons (tbsp) are in 1 US cup of butter or sugar?", options: ["8 tbsp", "12 tbsp", "16 tbsp", "20 tbsp"], correct: 2, explanation: "There are 16 tablespoons in 1 US cup." },
+            { question: "If a recipe requires 2 ounces (oz) of fresh yeast, how many grams is that approximately?", options: ["15g", "30g", "55g", "100g"], correct: 2, explanation: "1 ounce (oz) is about 28.35 grams, so 2 oz is approximately 55-60 grams." },
+            { question: "What temperature in Fahrenheit (°F) corresponds to a base dough temperature requiring 60°C?", options: ["100°F", "120°F", "140°F", "160°F"], correct: 2, explanation: "60°C multiplied by 9/5 plus 32 equals 140°F." },
+            { question: "How many fluid ounces (fl oz) are in 1 pint of milk for pastry cream?", options: ["8 fl oz", "12 fl oz", "16 fl oz", "20 fl oz"], correct: 2, explanation: "1 US pint is equal to 16 fluid ounces." },
+            { question: "Translate this instruction into metric units: 'Add 8 oz of melted butter.'", options: ["About 125g", "About 225g", "About 350g", "About 450g"], correct: 1, explanation: "8 ounces (oz) is half a pound, which equals approximately 225 grams of butter." }
+        ];
+
+        const BADGES = [
+            { id: 'early_bird', icon: '🌅', title: 'Le Levé aux Aurores', desc: 'Se connecter avant 7h00 du matin.', check: () => new Date().getHours() < 7 },
+            { id: 'streak_5', icon: '🔥', title: 'La Flamme du Four', desc: 'Maintenir une série de 3 jours de révision.', check: () => streak >= 3 },
+            { id: 'xp_100', icon: '⭐', title: 'Premier Palier', desc: 'Atteindre un total de 100 XP.', check: () => xp >= 100 },
+            { id: 'master_baguette', icon: '🥖', title: 'Maître de la Baguette', desc: 'Réussir un exercice dans la catégorie Pains.', check: () => totalCorrectPains >= 1 },
+            { id: 'speed_rush', icon: '⚡', title: 'Éclair en Laboratoire', desc: 'Terminer une session de Rush du Boulanger avec succès.', check: () => rushCompletedCount >= 1 },
+            { id: 'polyglot', icon: '🗣️', title: 'Polyglotte du Comptoir', desc: 'Terminer un jeu de rôle de service client.', check: () => roleplayCompletedCount >= 1 }
+        ];
+
+        const LEVELS = {
+            1: { name: "Apprenti", icon: "👶", xp: 0, fullName: "Apprenti Boulanger" },
+            2: { name: "Commis", icon: "🧑‍🍳", xp: 250, fullName: "Commis Boulanger" },
+            3: { name: "Boulanger", icon: "👨‍🍳", xp: 800, fullName: "Boulanger (Seuil Exigeant)" },
+            4: { name: "Chef", icon: "🎖️", xp: 2000, fullName: "Chef Boulanger (Expert)" },
+            5: { name: "MOF", icon: "👑", xp: 5000, fullName: "Meilleur Ouvrier de France" }
+        };
+
+        let xp = 0;
+        let mode = "flashcard";
+        let theme = "Ingrédients";
+        let deck = [];
+        let idx = 0;
+        let flipped = false;
+        let rushTimer = null;
+        let rushTimeLeft = 15;
+        let rushItem = null;
+        let recipeIdx = 0;
+        let userSteps = [];
+        let selStep = null;
+        let streak = 0;
+        let dailyXP = 0;
+        let lastAnswerTime = 0;
+        let currentListeningIndex = 0;
+        let currentListeningItem = null;
+        let currentListeningOptions = null;
+        let currentRoleplayItem = null;
+        let currentRoleplayOptions = null;
+        let currentRoleplayCorrectIdx = 0;
+
+        let totalCorrectPains = 0;
+        let rushCompletedCount = 0;
+        let roleplayCompletedCount = 0;
+        let unlockedBadges = [];
+
+        try { 
+            xp = parseInt(localStorage.getItem('bakerXP')) || 0; 
+            streak = parseInt(localStorage.getItem('bakerStreak')) || 0;
+            dailyXP = parseInt(localStorage.getItem('bakerDailyXP')) || 0;
+            totalCorrectPains = parseInt(localStorage.getItem('bakerPains')) || 0;
+            rushCompletedCount = parseInt(localStorage.getItem('bakerRush')) || 0;
+            roleplayCompletedCount = parseInt(localStorage.getItem('bakerRole')) || 0;
+            unlockedBadges = JSON.parse(localStorage.getItem('bakerBadges')) || [];
+        } catch(e) {}
+
+        const XP_MULTIPLIERS = { 'flashcard': 0.3, 'quiz': 0.8, 'listening': 1.0, 'roleplay': 1.2, 'recipe': 1.5, 'rush': 1.8, 'translation': 1.2, 'conversion': 1.2 };
+        const MAX_DAILY_XP = 400;
+        
+        function calculateXP(baseXP, modeType, isCorrect) {
+            if (!isCorrect) return 0;
+            if (dailyXP >= MAX_DAILY_XP) { showXPPopup("Limite quotidienne!", 0); return 0; }
+            const modeMultiplier = XP_MULTIPLIERS[modeType] || 1.0;
+            const streakBonus = 1 + Math.min(streak * 0.05, 0.5);
+            const now = Date.now();
+            const speedPenalty = (now - lastAnswerTime) < 3000 ? 0.3 : 1.0;
+            lastAnswerTime = now;
+            let finalXP = Math.round(baseXP * modeMultiplier * streakBonus * speedPenalty);
+            return Math.min(finalXP, MAX_DAILY_XP - dailyXP);
+        }
+        
+        function showXPPopup(text, amount) {
+            const popup = document.createElement('div');
+            popup.className = 'xp_popup';
+            popup.textContent = text;
+            popup.style.color = amount > 0 ? '#10B981' : '#F59E0B';
+            document.body.appendChild(popup);
+            setTimeout(() => popup.remove(), 1500);
+        }
+
+        function checkBadges() {
+            BADGES.forEach(b => {
+                if (!unlockedBadges.includes(b.id)) {
+                    if (b.check()) {
+                        unlockedBadges.push(b.id);
+                        try { localStorage.setItem('bakerBadges', JSON.stringify(unlockedBadges)); } catch(e) {}
+                        showXPPopup(`🏆 Trophée : ${b.title}`, 100);
+                    }
+                }
+            });
+        }
+
+        function addXP(n, modeType, isCorrect = true) {
+            const actualXP = calculateXP(n, modeType, isCorrect);
+            if (actualXP > 0) { 
+                xp += actualXP; 
+                dailyXP += actualXP; 
+                if (isCorrect) streak++; 
+                if (theme === 'Pains' && isCorrect) totalCorrectPains++;
+                try { 
+                    localStorage.setItem('bakerXP', xp); 
+                    localStorage.setItem('bakerStreak', streak); 
+                    localStorage.setItem('bakerDailyXP', dailyXP);
+                    localStorage.setItem('bakerPains', totalCorrectPains);
+                } catch(e) {} 
+                showXPPopup(`+${actualXP} XP`, actualXP); 
+            }
+            checkBadges();
+            updateProgress();
+        }
+        
+        function breakStreak() { streak = 0; try { localStorage.setItem('bakerStreak', 0); } catch(e) {} updateProgress(); }
+
+        function getLevel() {
+            for (let i = 5; i >= 1; i--) { if (xp >= LEVELS[i].xp) return { lvl: i, ...LEVELS[i], next: LEVELS[i+1] }; }
+            return { lvl: 1, ...LEVELS[1], next: LEVELS[2] };
+        }
+
+        function updateProgress() {
+            const L = getLevel();
+            document.getElementById('lvl-icon').textContent = L.icon;
+            document.getElementById('lvl-name').textContent = `Niveau ${L.lvl} · ${L.name}`;
+            document.getElementById('xp-display').textContent = `${xp} XP`;
+            const prevXp = LEVELS[L.lvl].xp;
+            const nextXp = L.next ? L.next.xp : L.xp + 1000;
+            const pct = L.next ? ((xp - prevXp) / (nextXp - prevXp)) * 100 : 100;
+            document.getElementById('progress-fill').style.width = Math.min(100, pct) + '%';
+            let labels = '';
+            for (let i = 1; i <= 5; i++) { const isCurrent = i === L.lvl; const isPassed = xp >= LEVELS[i].xp; labels += `<div class="level-label ${isCurrent ? 'current' : ''} ${isPassed ? 'passed' : ''}">${LEVELS[i].name}</div>`; }
+            document.getElementById('level-labels').innerHTML = labels;
+        }
+
+        function showThemeMenu(show) {
+            const menu = document.getElementById('theme-menu');
+            if (show) { menu.innerHTML = Object.keys(DATABASE).map(k => `<button class="menu-btn ${k === theme ? 'active' : ''}" data-theme="${k}">${k}</button>`).join(''); menu.style.display = 'flex'; }
+            else { menu.style.display = 'none'; }
+        }
+
+        function renderModeMenu() {
+            const modes = [
+                ['flashcard', '📚 Cartes'], 
+                ['quiz', '❓ Quiz'], 
+                ['listening', '👂 Audio'], 
+                ['roleplay', '🎭 Service'], 
+                ['recipe', '📜 Recettes'], 
+                ['rush', '⏱ Rush'], 
+                ['translation', '🔗 Association'], 
+                ['conversion', '🔢 US Units'],
+                ['badges', '🏆 Trophées']
+            ];
+            document.getElementById('mode-menu').innerHTML = modes.map(m => `<button class="menu-btn ${m[0] === mode ? 'active' : ''} ${m[0] === 'badges' ? 'gold' : ['translation', 'conversion'].includes(m[0]) ? 'purple' : ''}" data-mode="${m[0]}">${m[1]}</button>`).join('');
+        }
+
+        function shuffle(arr) { let a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+        function shuffleWithCorrectIndex(arr, correctIndex) { const withIdx = arr.map((item, idx) => ({ item, originalIdx: idx })); const shuffled = shuffle(withIdx); const newCorrectIdx = shuffled.findIndex(x => x.originalIdx === correctIndex); return { shuffled: shuffled.map(x => x.item), newCorrectIdx: newCorrectIdx }; }
+        function speak(text) { try { window.speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.lang = 'en-GB'; u.rate = 0.9; window.speechSynthesis.speak(u); } catch(e) {} }
+
+        function renderCardCounter(current, total, label = "cartes") { return `<div class="card-counter">📚 ${current} / ${total} ${label}</div>`; }
+        function renderQuizHeader(questionNum, totalQuestions, themeName) { return `<div class="quiz-header"><div class="quiz-number">Question ${questionNum}/${totalQuestions}</div><div class="quiz-theme">${themeName}</div></div>`; }
+
+        function renderFlashcard() {
+            const item = deck[idx];
+            document.getElementById('game-area').innerHTML = `${renderCardCounter(idx + 1, deck.length, "cartes")}<div class="flashcard ${flipped ? 'flashcard-back' : 'flashcard-front'}" id="card"><span class="card-label">${flipped ? 'English' : 'Français'}</span><div class="card-word">${flipped ? item.en : item.fr}</div>${flipped ? `<div class="card-example">"${item.ex}"</div><button class="btn-icon" id="speak-btn" style="margin-top:12px;">🔊</button>` : '<div class="card-hint">👆 Touchez pour retourner</div>'}</div><div class="controls"><button class="btn-icon" id="prev-btn" ${idx === 0 ? 'disabled' : ''}>◀</button><button class="btn-icon" id="shuf-btn">🔄</button><button class="btn-next" id="next-btn">Suivant ▶</button></div>`;
+            document.getElementById('card').addEventListener('click', () => { flipped = !flipped; renderFlashcard(); if(flipped) speak(item.en); });
+            document.getElementById('prev-btn').addEventListener('click', () => { if(idx > 0) { idx--; flipped = false; renderFlashcard(); } });
+            document.getElementById('shuf-btn').addEventListener('click', () => { deck = shuffle(deck); idx = 0; flipped = false; renderFlashcard(); });
+            document.getElementById('next-btn').addEventListener('click', () => { idx = (idx + 1) % deck.length; if(idx === 0) deck = shuffle(deck); flipped = false; renderFlashcard(); });
+            if(flipped) document.getElementById('speak-btn').addEventListener('click', (e) => { e.stopPropagation(); speak(item.en); });
+        }
+
+        function renderQuiz() {
+            const item = deck[idx];
+            let opts = [item.en];
+            const all = Object.values(DATABASE).flat().map(x => x.en);
+            while (opts.length < 4) { const r = all[Math.floor(Math.random() * all.length)]; if (!opts.includes(r)) opts.push(r); }
+            opts = shuffle(opts);
+            document.getElementById('game-area').innerHTML = `${renderQuizHeader(idx + 1, deck.length, theme)}<p style="color:#6B7280; font-size:0.9rem;">Traduisez en anglais :</p><div class="quiz-word">${item.fr}</div><div class="quiz-options" id="opts">${opts.map(o => `<button class="quiz-btn" data-ans="${o}">${o}</button>`).join('')}</div><div id="quiz-result"></div>`;
+            document.querySelectorAll('#opts .quiz-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const ans = btn.dataset.ans;
+                    const correct = ans === item.en;
+                    document.querySelectorAll('#opts .quiz-btn').forEach(b => { b.disabled = true; if (b.dataset.ans === item.en) b.classList.add('correct'); if (b.dataset.ans === ans && !correct) b.classList.add('wrong'); });
+                    if (correct) addXP(8, 'quiz', true); else breakStreak();
+                    document.getElementById('quiz-result').innerHTML = `<div class="feedback ${correct ? 'success' : 'error'}">${correct ? '🎉 Correct !' : '❌ Réponse : ' + item.en}</div><button class="btn-action ${correct ? 'success' : 'error'}" id="next-quiz">Suivant ▶</button>`;
+                    document.getElementById('next-quiz').addEventListener('click', () => { idx = (idx + 1) % deck.length; if(idx === 0) deck = shuffle(deck); renderQuiz(); });
+                });
+            });
+        }
+
+        function initListeningMode() {
+            currentListeningItem = LISTENING[currentListeningIndex];
+            const wrongOptions = shuffle(["🌾", "💧", "🧫", "🥖", "🧈", "🥛", "🥚", "🍯", "🍞", "🥐", "🍫", "✋", "🔥", "🔪", "⚖️", "☁️"].filter(x => x !== currentListeningItem.answer)).slice(0, 3);
+            const result = shuffleWithCorrectIndex([...wrongOptions, currentListeningItem.answer], 3);
+            currentListeningOptions = result.shuffled;
+            renderListening(null);
+        }
+
+        function renderListening(selectedAnswer) {
+            const item = currentListeningItem;
+            const options = currentListeningOptions;
+            if (!item) { initListeningMode(); return; }
+            const answered = selectedAnswer !== null;
+            document.getElementById('game-area').innerHTML = `${renderQuizHeader(currentListeningIndex + 1, LISTENING.length, item.category || "Audio")}<h3 style="margin-bottom:8px;">👂 Écoutez et choisissez</h3><button class="audio-btn" id="audio-btn">🔊</button><div class="quiz-options" id="listen-opts">${options.map(opt => { let cls = 'quiz-btn'; if (answered) { if (opt === item.answer) cls += ' correct'; else if (opt === selectedAnswer) cls += ' wrong'; } return `<button class="${cls}" data-opt="${opt}" ${answered ? 'disabled' : ''}><span style="font-size:1.5rem;">${opt}</span></button>`; }).join('')}</div><div id="listen-result"></div>`;
+            document.getElementById('audio-btn').addEventListener('click', () => speak(item.audio));
+            if (!answered) { document.querySelectorAll('#listen-opts .quiz-btn').forEach(btn => { btn.addEventListener('click', () => { const choice = btn.dataset.opt; if (choice === item.answer) addXP(12, 'listening', true); else breakStreak(); renderListening(choice); }); }); }
+            if (answered) { document.getElementById('listen-result').innerHTML = `<div class="feedback ${selectedAnswer === item.answer ? 'success' : 'error'}" style="margin-top:16px;">${selectedAnswer === item.answer ? '🎉 Correct !' : '❌ Réponse : ' + item.answer + '<br><small>Indice : ' + item.hint + '</small>'}</div><button class="btn-action ${selectedAnswer === item.answer ? 'success' : 'error'}" id="next-listen">Suivant ▶</button>`; document.getElementById('next-listen').addEventListener('click', () => { currentListeningIndex = (currentListeningIndex + 1) % LISTENING.length; initListeningMode(); }); }
+        }
+
+        function initRoleplayMode() {
+            currentRoleplayItem = ROLEPLAY[Math.floor(Math.random() * ROLEPLAY.length)];
+            const result = shuffleWithCorrectIndex(currentRoleplayItem.opts, currentRoleplayItem.correctIdx);
+            currentRoleplayOptions = result.shuffled;
+            currentRoleplayCorrectIdx = result.newCorrectIdx;
+            renderRoleplay(null);
+        }
+
+        function renderRoleplay(selectedAnswer) {
+            const item = currentRoleplayItem;
+            const opts = currentRoleplayOptions;
+            const correctIdx = currentRoleplayCorrectIdx;
+            if (!item || !opts) { initRoleplayMode(); return; }
+            const answered = selectedAnswer !== null;
+            document.getElementById('game-area').innerHTML = `${renderQuizHeader(1, ROLEPLAY.length, "Scénario " + item.scene)}<div class="scenario-box"><div class="scenario-title">💬 ${item.scene}</div><div class="dialogue">${item.ctx}</div></div><p style="font-size:0.85rem; color:#6B7280; margin-bottom:12px;">Choisissez la bonne réponse :</p><div style="display:flex; flex-direction:column; gap:8px;">${opts.map((o, i) => `<button class="quiz-btn ${answered && i === correctIdx ? 'correct' : ''} ${answered && i === selectedAnswer && i !== correctIdx ? 'wrong' : ''}" data-idx="${i}" ${answered ? 'disabled' : ''} style="text-align:left;">${o}</button>`).join('')}</div><div id="role-result"></div>`;
+            if (answered) { 
+                if (selectedAnswer === correctIdx) {
+                    addXP(15, 'roleplay', true);
+                    roleplayCompletedCount++;
+                    try { localStorage.setItem('bakerRole', roleplayCompletedCount); } catch(e) {}
+                    checkBadges();
+                } else breakStreak(); 
+                document.getElementById('role-result').innerHTML = `<div class="feedback ${selectedAnswer === correctIdx ? 'success' : 'error'}" style="margin-top:16px;">${selectedAnswer === correctIdx ? '🎭 Excellent !' : 'Pas tout à fait...'}</div><div class="scenario-box" style="background:#EFF6FF; margin-top:12px;">💡 ${item.fb}</div><button class="btn-action primary" id="next-role" style="margin-top:12px;">Suivant ▶</button>`; document.getElementById('next-role').addEventListener('click', () => initRoleplayMode()); 
+            }
+            else { document.querySelectorAll('[data-idx]').forEach(btn => { btn.addEventListener('click', () => { renderRoleplay(parseInt(btn.dataset.idx)); }); }); }
+        }
+
+        function renderRecipe() {
+            const item = RECIPES[recipeIdx];
+            userSteps = userSteps.length ? userSteps : shuffle([...item.steps]);
+            const done = userSteps.every((s, i) => s === item.steps[i]);
+            document.getElementById('game-area').innerHTML = `${renderQuizHeader(1, RECIPES.length, "Recette")}<div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;"><div style="width:40px; height:40px; background:#FFE0B2; border-radius:50%; display:flex; align-items:center; justify-content:center;">👨‍🍳</div><div><div style="font-size:0.7rem; color:#D97706;">RECETTE</div><div style="font-weight:bold; color:#8B4513;">${item.name}</div></div></div><p style="font-size:0.80rem; color:#6B7280; margin-bottom:12px;">👆 Cliquez sur 2 étapes pour les échanger</p><div style="display:flex; flex-direction:column; gap:6px;">${userSteps.map((s, i) => `<div class="quiz-btn ${selStep === i ? 'correct' : ''} ${done ? 'correct' : ''}" data-step="${i}" style="text-align:left; display:flex; align-items:center; gap:8px; font-size:0.85rem;"><span style="width:22px; height:22px; border-radius:50%; background:${done ? '#10B981' : '#E5E7EB'}; display:flex; align-items:center; justify-content:center; font-size:0.7rem; font-weight:bold; color:${done ? 'white' : '#333'};">${done ? '✓' : i + 1}</span>${s}</div>`).join('')}</div><div id="recipe-result"></div>`;
+            if (done) addXP(25, 'recipe', true);
+            document.querySelectorAll('[data-step]').forEach(div => { div.addEventListener('click', () => { const i = parseInt(div.dataset.step); if (done) return; if (selStep === null) selStep = i; else { [userSteps[selStep], userSteps[i]] = [userSteps[i], userSteps[selStep]]; selStep = null; } renderRecipe(); }); });
+            document.getElementById('recipe-result').innerHTML = done ? `<div class="feedback success" style="margin-top:16px;">🎉 Recette validée !</div>` : '';
+        }
+
+        // ==========================================
+        // MODE ASSOCIATION AVEC PAIRES MULTICOLORES À LA SÉLECTION
+        // ==========================================
+        let matchCategory = Object.keys(translationDatabase)[0];
+        let matchPairs = [];
+        let shuffledFrench = [];
+        let shuffledEnglish = [];
+        let selectedFr = null;
+        let selectedEn = null;
+        let userLinks = {}; 
+        let matchValidated = false;
+        let pairColors = [];
+
+        // Palette de couleurs pastel distinctes pour chaque paire liée
+        const pastelColors = [
+            { bg: '#fef3c7', border: '#f59e0b', text: '#92400e' }, // Jaune ambré
+            { bg: '#d1fae5', border: '#10b981', text: '#065f46' }, // Vert menthe
+            { bg: '#e0f2fe', border: '#0284c7', text: '#0369a1' }, // Bleu ciel
+            { bg: '#fae8ff', border: '#d946ef', text: '#86198f' }  // Rose / Violet
+        ];
+
+        function initMatchRound() {
+            const sourceData = translationDatabase[matchCategory];
+            const sampled = shuffle([...sourceData]).slice(0, 4);
+            matchPairs = sampled;
+            shuffledFrench = shuffle(sampled.map((item, index) => ({ text: item.fr, originalIdx: index })));
+            shuffledEnglish = shuffle(sampled.map((item, index) => ({ text: item.en, originalIdx: index })));
+            selectedFr = null;
+            selectedEn = null;
+            userLinks = {};
+            matchValidated = false;
+            
+            const shuffledPalette = shuffle([...pastelColors]);
+            pairColors = sampled.map((_, i) => shuffledPalette[i % shuffledPalette.length]);
+            
+            renderMatchScreen();
+        }
+
+        function renderMatchScreen() {
+            const categories = Object.keys(translationDatabase);
+            const allLinked = Object.keys(userLinks).length === matchPairs.length;
+
+            document.getElementById('game-area').innerHTML = `
+                <div class="mode-label purple">🔗 ASSOCIATION DE TERMES</div>
+                <div style="display:flex; gap:6px; overflow-x:auto; margin-bottom:12px; padding-bottom:4px;" id="match-cats">
+                    ${categories.map(cat => `<button class="menu-btn ${cat === matchCategory ? 'active' : ''}" style="font-size:0.7rem; padding:4px 8px;" data-cat="${cat}">${cat}</button>`).join('')}
+                </div>
+                <p style="font-size:0.75rem; color:#6B7280; margin-bottom:10px;">Associez chaque terme français à sa traduction anglaise :</p>
+                
+                <div class="match-grid">
+                    <div class="match-column" id="col-fr">
+                        <div style="font-size:0.75rem; font-weight:bold; color:#8b5cf6; text-align:center; margin-bottom:2px;">FRANÇAIS</div>
+                        ${shuffledFrench.map((f) => {
+                            const isSelected = selectedFr === f.originalIdx;
+                            const linkedEnIdx = userLinks[f.originalIdx];
+                            const isLinked = linkedEnIdx !== undefined;
+                            let styleAttr = "";
+                            let customClass = "match-item";
+                            
+                            if (matchValidated) {
+                                const isCorrect = linkedEnIdx === f.originalIdx;
+                                if (isCorrect) {
+                                    styleAttr = `style="background-color: #D1FAE5; border-color: #10B981; color: #065F46;"`;
+                                } else {
+                                    customClass += " wrong";
+                                }
+                            } else if (isLinked) {
+                                // Trouve quelle couleur correspond à ce lien (basé sur le frOriginalIdx)
+                                const colorObj = pairColors[f.originalIdx];
+                                styleAttr = `style="background-color: ${colorObj.bg}; border-color: ${colorObj.border}; color:${colorObj.text};"`;
+                            } else if (isSelected) {
+                                customClass += " selected";
+                            }
+                            return `<div class="${customClass}" ${styleAttr} data-type="fr" data-orig="${f.originalIdx}">${f.text}</div>`;
+                        }).join('')}
+                    </div>
+
+                    <div class="match-column" id="col-en">
+                        <div style="font-size:0.75rem; font-weight:bold; color:#8b5cf6; text-align:center; margin-bottom:2px;">ANGLAIS</div>
+                        ${shuffledEnglish.map((e) => {
+                            const isSelected = selectedEn === e.originalIdx;
+                            const matchedFrKey = Object.keys(userLinks).find(k => userLinks[k] === e.originalIdx);
+                            const isLinked = matchedFrKey !== undefined;
+                            let styleAttr = "";
+                            let customClass = "match-item";
+                            
+                            if (matchValidated) {
+                                const isCorrect = matchedFrKey && parseInt(matchedFrKey) === e.originalIdx;
+                                if (isCorrect) {
+                                    styleAttr = `style="background-color: #D1FAE5; border-color: #10B981; color: #065F46;"`;
+                                } else {
+                                    customClass += " wrong";
+                                }
+                            } else if (isLinked) {
+                                const colorObj = pairColors[parseInt(matchedFrKey)];
+                                styleAttr = `style="background-color: ${colorObj.bg}; border-color: ${colorObj.border}; color:${colorObj.text};"`;
+                            } else if (isSelected) {
+                                customClass += " selected";
+                            }
+                            return `<div class="${customClass}" ${styleAttr} data-type="en" data-orig="${e.originalIdx}">${e.text}</div>`;
+                        }).join('')}
+                    </div>
+                </div>
+
+                <div id="match-action-zone">
+                    ${!matchValidated && allLinked ? `<button class="btn-action purple" id="validate-match">Valider mes choix 🔍</button>` : ''}
+                    ${matchValidated ? `<button class="btn-action purple" id="next-match">Manche suivante ▶</button>` : ''}
+                </div>
+            `;
+
+            document.querySelectorAll('#match-cats [data-cat]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    matchCategory = btn.dataset.cat;
+                    initMatchRound();
+                });
+            });
+
+            if (!matchValidated) {
+                document.querySelectorAll('.match-item').forEach(item => {
+                    item.addEventListener('click', () => {
+                        const type = item.dataset.type;
+                        const orig = parseInt(item.dataset.orig);
+
+                        if (type === 'fr') {
+                            selectedFr = orig;
+                        } else {
+                            selectedEn = orig;
+                        }
+
+                        if (selectedFr !== null && selectedEn !== null) {
+                            userLinks[selectedFr] = selectedEn;
+                            selectedFr = null;
+                            selectedEn = null;
+                        }
+                        renderMatchScreen();
+                    });
+                });
+
+                const validateBtn = document.getElementById('validate-match');
+                if (validateBtn) {
+                    validateBtn.addEventListener('click', () => {
+                        matchValidated = true;
+                        let allCorrect = true;
+                        matchPairs.forEach((_, idx) => {
+                            if (userLinks[idx] !== idx) allCorrect = false;
+                        });
+
+                        if (allCorrect) {
+                            addXP(15, 'translation', true);
+                        } else {
+                            breakStreak();
+                        }
+                        renderMatchScreen();
+                    });
+                }
+            } else {
+                const nextBtn = document.getElementById('next-match');
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', () => {
+                        initMatchRound();
+                    });
+                }
+            }
+        }
+
+        let conversionIdx = 0;
+        let conversionAnswered = false;
+
+        function renderConversion() {
+            const exercise = conversionExercises[conversionIdx];
+            document.getElementById('game-area').innerHTML = `
+                <div class="mode-label purple">🔢 US UNITS & CONVERSION</div>
+                ${renderQuizHeader(conversionIdx + 1, conversionExercises.length, "US Baking Standards")}
+                <div style="background:linear-gradient(135deg, #f3e8ff, #e9d5ff); padding:16px; border-radius:12px; margin:12px 0;">
+                    <p style="font-weight:600; color:#6d28d9; line-height:1.5;">${exercise.question}</p>
+                </div>
+                <div class="quiz-options" id="conv-opts">
+                    ${exercise.options.map((opt, i) => `<button class="quiz-btn" data-opt="${i}" style="font-weight:600;">${opt}</button>`).join('')}
+                </div>
+                <div id="conv-result"></div>
+            `;
+            conversionAnswered = false;
+            document.querySelectorAll('#conv-opts .quiz-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if(conversionAnswered) return;
+                    conversionAnswered = true;
+                    const choice = parseInt(btn.dataset.opt);
+                    const correct = choice === exercise.correct;
+                    document.querySelectorAll('#conv-opts .quiz-btn').forEach(b => {
+                        b.disabled = true;
+                        if(parseInt(b.dataset.opt) === exercise.correct) b.classList.add('correct');
+                        if(parseInt(b.dataset.opt) === choice && !correct) b.classList.add('wrong');
+                    });
+                    if(correct) addXP(15, 'conversion', true); else breakStreak();
+                    document.getElementById('conv-result').innerHTML = `
+                        <div class="feedback ${correct ? 'success' : 'error'}" style="margin-top:16px;">${correct ? '🎉 Correct !' : '❌ Incorrect'}</div>
+                        <div class="scenario-box" style="background:#f3e8ff; margin-top:12px; border:1px solid #c4b5fd;"><strong style="color:#6d28d9;">💡 Explanation :</strong><br>${exercise.explanation}</div>
+                        <button class="btn-action purple" id="next-conv" style="margin-top:12px;">Suivant ▶</button>
+                    `;
+                    document.getElementById('next-conv').addEventListener('click', () => {
+                        conversionIdx = (conversionIdx + 1) % conversionExercises.length;
+                        renderConversion();
+                    });
+                });
+            });
+        }
+
+        function renderBadgesScreen() {
+            const unlockedCount = unlockedBadges.length;
+            document.getElementById('game-area').innerHTML = `
+                <div class="mode-label gold">🏆 VITRINE DES TROPHÉES</div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                    <span style="font-weight:bold; color:#8B4513; font-size:0.9rem;">Débloqués : ${unlockedCount} / ${BADGES.length}</span>
+                    <span style="font-size:0.75rem; color:#D97706; font-weight:bold;">✨ Gagne des badges !</span>
+                </div>
+                <div class="badge-grid">
+                    ${BADGES.map(b => {
+                        const isUnlocked = unlockedBadges.includes(b.id);
+                        return `
+                            <div class="badge-card ${isUnlocked ? 'unlocked' : ''}">
+                                <div class="badge-icon-box">${b.icon}</div>
+                                <div>
+                                    <div class="badge-title">${b.title}</div>
+                                    <div class="badge-desc">${b.desc}</div>
+                                    <div style="font-size:0.65rem; margin-top:4px; font-weight:bold; color:${isUnlocked ? '#D97706' : '#9CA3AF'};">
+                                        ${isUnlocked ? '✅ Débloqué' : '🔒 Verrouillé'}
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+        }
+
+        function normalize(s) { return s.toLowerCase().trim().replace(/^(the|a|an)\s/, '').split('/')[0].trim(); }
+
+        function renderRush(state) {
+            if (state === 'idle') { document.getElementById('game-area').innerHTML = `${renderCardCounter(1, 1, "rush")}<h3 style="display:flex; align-items:center; justify-content:center; gap:8px;">⏱️ Le Rush du Boulanger</h3><p style="color:#6B7280; font-size:0.9rem; margin:12px 0;">Écrivez vite le mot en anglais !</p><button class="btn-action primary" id="start-rush">▶ Démarrer</button>`; document.getElementById('start-rush').addEventListener('click', () => startRush()); return; }
+            if (state === 'win') { 
+                rushCompletedCount++;
+                try { localStorage.setItem('bakerRush', rushCompletedCount); } catch(e) {}
+                checkBadges();
+                document.getElementById('game-area').innerHTML = `<div style="font-size:3rem; margin-bottom:8px;">✅</div><div style="color:#10B981; font-weight:bold; font-size:1.3rem;">Correct !</div><div style="color:#6B7280; margin:8px 0 16px;">${rushItem.en}</div><button class="btn-action success" id="next-rush">Suivant ▶</button>`; document.getElementById('next-rush').addEventListener('click', () => startRush()); return; 
+            }
+            if (state === 'lose') { document.getElementById('game-area').innerHTML = `<div style="font-size:3rem; margin-bottom:8px;">❌</div><div style="color:#EF4444; font-weight:bold; font-size:1.3rem;">Temps écoulé !</div><div style="color:#6B7280;">La réponse était :</div><div style="font-size:1.3rem; font-weight:bold; margin-bottom:16px;">${rushItem.en}</div><button class="btn-action primary" id="cont-rush">Continuer ▶</button>`; document.getElementById('cont-rush').addEventListener('click', () => startRush()); return; }
+            document.getElementById('game-area').innerHTML = `<div style="background:#FFF8E1; padding:8px 16px; border-radius:20px; display:inline-block; font-weight:bold; color:#8B4513; margin-bottom:12px;">⏱️ ${rushTimeLeft.toFixed(1)}s</div><div class="quiz-word">${rushItem.fr}</div><input type="text" class="quiz-btn" id="rush-input" style="background:#FFF8E1; border:2px solid #D2691E; text-align:center; margin-top:10px;" placeholder="Écrivez en anglais..." autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">`;
+            const input = document.getElementById('rush-input');
+            input.focus();
+            input.addEventListener('input', () => { if (normalize(input.value) === normalize(rushItem.en)) { clearInterval(rushTimer); addXP(20, 'rush', true); renderRush('win'); } });
+            rushTimer = setInterval(() => { rushTimeLeft -= 0.1; if (rushTimeLeft <= 0) { clearInterval(rushTimer); breakStreak(); renderRush('lose'); } }, 100);
+        }
+
+        function startRush() { const all = Object.values(DATABASE).flat(); rushItem = all[Math.floor(Math.random() * all.length)]; rushTimeLeft = 12; renderRush('play'); }
+
+        function setMode(m) {
+            if (rushTimer) clearInterval(rushTimer);
+            mode = m;
+            renderModeMenu();
+            showThemeMenu(m === 'flashcard' || m === 'quiz');
+            if (m === 'flashcard') { deck = shuffle([...DATABASE[theme]]); idx = 0; flipped = false; renderFlashcard(); }
+            else if (m === 'quiz') { deck = shuffle([...DATABASE[theme]]); idx = 0; renderQuiz(); }
+            else if (m === 'listening') initListeningMode();
+            else if (m === 'roleplay') initRoleplayMode();
+            else if (m === 'recipe') { recipeIdx = Math.floor(Math.random() * RECIPES.length); userSteps = []; selStep = null; renderRecipe(); }
+            else if (m === 'rush') renderRush('idle');
+            else if (m === 'translation') { initMatchRound(); }
+            else if (m === 'conversion') { conversionIdx = 0; renderConversion(); }
+            else if (m === 'badges') { renderBadgesScreen(); }
+        }
+
+        function setTheme(t) { theme = t; showThemeMenu(true); deck = shuffle([...DATABASE[theme]]); idx = 0; flipped = false; if (mode === 'flashcard') renderFlashcard(); else if (mode === 'quiz') renderQuiz(); }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            checkBadges();
+            document.getElementById('start-btn').addEventListener('click', () => { document.getElementById('home-screen').style.display = 'none'; document.getElementById('game-screen').style.display = 'flex'; renderModeMenu(); updateProgress(); setMode('flashcard'); });
+            document.getElementById('home-btn').addEventListener('click', () => { if (rushTimer) clearInterval(rushTimer); document.getElementById('game-screen').style.display = 'none'; document.getElementById('home-screen').style.display = 'flex'; });
+            document.getElementById('mode-menu').addEventListener('click', (e) => { if (e.target.dataset.mode) setMode(e.target.dataset.mode); });
+            document.getElementById('theme-menu').addEventListener('click', (e) => { if (e.target.dataset.theme) setTheme(e.target.dataset.theme); });
+            if (xp > 0) { const L = getLevel(); document.getElementById('home-progress').innerHTML = `<div style="background:white; border-radius:12px; padding:12px; margin-bottom:16px; width:100%; max-width:320px; box-shadow:0 2px 8px rgba(0,0,0,0.1);"><div style="display:flex; align-items:center; gap:10px;"><span style="font-size:1.5rem;">${L.icon}</span><div style="flex:1;"><div style="font-weight:bold; color:#8B4513; font-size:0.85rem;">Niveau ${L.lvl} · ${L.name}</div><div style="font-size:0.75rem; color:#B45309;">${xp} XP gagnés</div></div></div></div>`; }
+        });
+        
+        function checkDailyReset() { const lastDate = localStorage.getItem('bakerLastDate'); const today = new Date().toDateString(); if (lastDate !== today) { dailyXP = 0; localStorage.setItem('bakerDailyXP', '0'); localStorage.setItem('bakerLastDate', today); } }
+        checkDailyReset();
+    </script>
+</body>
+</html>
