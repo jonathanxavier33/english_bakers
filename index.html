@@ -439,13 +439,24 @@
     }
     .rush-input:focus { border-color: var(--gold); }
 
-    /* Translation */
-    .trans-cat-pill {
-        display: inline-block; background: rgba(124,78,187,0.2);
-        border: 1px solid rgba(124,78,187,0.4); color: var(--purple2);
-        font-size: 0.72rem; font-weight: 600;
-        padding: 3px 10px; border-radius: 20px; margin-bottom: 10px;
-    }
+    /* Translation matching game */
+    .trans-cat-pill { display:inline-block; background:rgba(124,78,187,.2); border:1px solid rgba(124,78,187,.4); color:var(--purple2); font-size:.72rem; font-weight:600; padding:3px 10px; border-radius:20px; margin-bottom:10px; }
+    .match-intro { color:var(--muted); font-size:.86rem; line-height:1.5; margin:4px 0 14px; }
+    .match-progress { height:7px; background:var(--bg3); border-radius:99px; overflow:hidden; margin:10px 0 14px; }
+    .match-progress-fill { height:100%; width:0; background:linear-gradient(90deg,var(--purple2),var(--green2)); transition:width .35s ease; }
+    .match-grid { display:grid; grid-template-columns:1fr 1fr; gap:9px; align-items:stretch; }
+    .match-col-title { color:var(--muted); font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; margin-bottom:7px; text-align:center; }
+    .match-choice { width:100%; min-height:54px; padding:10px 8px; border-radius:12px; border:1px solid var(--border2); background:var(--bg2); color:var(--text); font:600 .88rem 'DM Sans',sans-serif; cursor:pointer; transition:transform .16s,border-color .16s,background .16s; overflow-wrap:anywhere; }
+    .match-choice:active { transform:scale(.97); }
+    .match-choice.selected { border-color:var(--purple2); background:rgba(124,78,187,.18); box-shadow:0 0 0 2px rgba(124,78,187,.12); }
+    .match-choice.matched { border-color:var(--green2); background:rgba(54,180,112,.13); color:var(--green2); animation:feedbackPop .28s ease; }
+    .match-choice.mistake { border-color:var(--red2); background:rgba(220,70,70,.12); animation:shake .28s ease; }
+    .match-feedback { margin-top:13px; padding:12px; border-radius:12px; font-size:.88rem; line-height:1.5; animation:feedbackPop .25s ease; }
+    .match-feedback.good { color:var(--green2); background:rgba(54,180,112,.1); }
+    .match-feedback.bad { color:var(--text); background:rgba(220,70,70,.09); border:1px solid rgba(220,70,70,.25); }
+    .match-complete { text-align:center; padding:18px 8px; }
+    .match-complete .big-score { font-size:2rem; font-weight:900; color:var(--green2); margin:8px 0; }
+    @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)} }
 
     /* Conversion */
     .conv-box {
@@ -1667,52 +1678,85 @@ function startRush() {
     renderRush('play');
 }
 
-/* ─── TRANSLATION  ─────────────────────────────────────── */
+/* ─── TRANSLATION : EXERCICE D'APPARIEMENT ─────────────────────── */
 function initTranslation() {
-    if(!S.transTheme) S.transTheme = Object.keys(DB_EXTRA)[0];
+    S.transMatches = 0;
+    S.transMistakes = 0;
+    S.transRound = 0;
+    if (!S.transTheme) S.transTheme = Object.keys(DB)[0];
     renderTranslationMenu();
 }
+function translationDB() {
+    return Object.assign({}, DB_EXTRA || {}, DB || {});
+}
 function renderTranslationMenu() {
+    const allDB = translationDB();
     document.getElementById('game-card').innerHTML =
-        '<div class="mode-label purple">\uD83D\uDCD6 Traduction avancée</div>' +
-        '<p style="color:var(--muted);font-size:0.82rem;margin-bottom:14px;">Choisissez une cat\u00E9gorie :</p>' +
+        '<div class="mode-label purple">📖 Traduction · Jeu de mise en correspondance</div>' +
+        '<p class="match-intro">Associez chaque mot français à sa traduction anglaise. Choisissez un mot à gauche, puis son équivalent à droite. Chaque série contient jusqu’à 6 paires.</p>' +
         '<div style="display:flex;flex-direction:column;gap:8px;">' +
-        Object.keys(DB).map(function(k){
-            return '<button class="quiz-opt" style="justify-content:space-between;" data-tcat="'+k+'">' +
-                '<span>'+k+'</span>' +
-                '<span style="font-size:0.72rem;color:var(--purple2);">'+DB[k].length+' termes</span></button>';
-        }).join('') +
-        '</div>';
+        Object.keys(allDB).map(function(k){
+            return '<button class="quiz-opt" style="justify-content:space-between;" data-tcat="'+k.replace(/"/g,'&quot;')+'"><span>'+k+'</span><span style="font-size:.72rem;color:var(--purple2);">'+allDB[k].length+' termes　›</span></button>';
+        }).join('') + '</div>';
     document.getElementById('ctrl-area').innerHTML = '';
     document.querySelectorAll('[data-tcat]').forEach(function(b){b.addEventListener('click',function(){
-        S.transTheme=b.dataset.tcat; S.transIdx=0; S.flipped=false; renderTranslationCard();
+        S.transTheme=b.dataset.tcat; S.transIdx=0; S.flipped=false; S.transMatches=0; S.transMistakes=0; S.transRound=0; startTranslationRound();
     });});
 }
-function renderTranslationCard() {
-    const items = DB[S.transTheme] || DB_EXTRA[S.transTheme] || [];
-    const item  = items[S.transIdx];
-    document.getElementById('game-card').innerHTML =
-        '<div class="mode-label purple">\uD83D\uDCD6 Traduction \u00B7 '+S.transTheme+'</div>' +
-        '<div class="trans-cat-pill">'+S.transTheme+'</div>' +
-        '<div class="fc-count">\uD83D\uDCD6 '+(S.transIdx+1)+' / '+items.length+'</div>' +
-        '<div class="fc-word '+(S.flipped?'flipped':'')+'" id="tc-word">'+(S.flipped?item.en:item.fr)+'</div>' +
-        (S.flipped?'<div class="fc-ex">"'+item.ex+'"</div>':'<div class="fc-hint">Touchez pour retourner</div>');
-    document.getElementById('ctrl-area').innerHTML =
-        '<div class="btn-row">' +
-        '<button class="btn-nav" id="tc-prev" '+(S.transIdx===0?'disabled':'')+'>\u25C0</button>' +
-        '<button class="btn-nav" id="tc-menu">\uD83D\uDCCB</button>' +
-        '<button class="btn-sound" id="tc-speak">\uD83D\uDD0A</button>' +
-        '<button class="btn-nav purple" id="tc-next">Suivant \u25B6</button>' +
-        '</div>';
-    document.getElementById('tc-word').addEventListener('click',function(){
-        S.flipped=!S.flipped;
-        if(S.flipped){earnXP(5,'translation');speak(item.en);}
-        renderTranslationCard();
-    });
-    document.getElementById('tc-prev').addEventListener('click',function(){if(S.transIdx>0){S.transIdx--;S.flipped=false;renderTranslationCard();}});
-    document.getElementById('tc-next').addEventListener('click',function(){S.transIdx=(S.transIdx+1)%items.length;S.flipped=false;renderTranslationCard();});
+function startTranslationRound() {
+    const items = (translationDB()[S.transTheme] || []).slice();
+    if (!items.length) { renderTranslationMenu(); return; }
+    // Shuffle the vocabulary, take a manageable set, and independently shuffle the English column.
+    for (let i=items.length-1;i>0;i--) { const j=Math.floor(Math.random()*(i+1)); [items[i],items[j]]=[items[j],items[i]]; }
+    S.transRoundItems = items.slice(0,Math.min(6,items.length));
+    S.transRoundItems = S.transRoundItems.map(function(item,i){return Object.assign({},item,{_matchId:'pair_'+S.transRound+'_'+i,_matched:false});});
+    S.transEnglishOrder = S.transRoundItems.slice();
+    for (let i=S.transEnglishOrder.length-1;i>0;i--) { const j=Math.floor(Math.random()*(i+1)); [S.transEnglishOrder[i],S.transEnglishOrder[j]]=[S.transEnglishOrder[j],S.transEnglishOrder[i]]; }
+    S.transSelectedFr = null; S.transSelectedEn = null; S.transRoundErrors = 0;
+    renderTranslationMatch();
+}
+function renderTranslationMatch(feedbackHTML) {
+    const items=S.transRoundItems||[];
+    const matched=items.filter(x=>x._matched).length;
+    const done=items.length>0 && matched===items.length;
+    const pct=items.length?Math.round(matched/items.length*100):0;
+    let html='<div class="mode-label purple">📖 Appariement · '+S.transTheme+'</div>'+
+        '<div class="trans-cat-pill">Série '+(S.transRound+1)+' · '+matched+'/'+items.length+' paires</div>'+
+        '<div class="match-progress"><div class="match-progress-fill" style="width:'+pct+'%"></div></div>';
+    if(done) {
+        html+='<div class="match-complete"><div style="font-size:2.4rem">🎉</div><h3>Série terminée !</h3><div class="big-score">'+matched+'/'+items.length+'</div><p class="match-intro">'+(S.transRoundErrors===0?'Parfait : aucune erreur !':'Erreurs dans cette série : '+S.transRoundErrors+'. Continuez à vous entraîner pour mémoriser les mots.')+'</p><button class="btn-primary" id="tc-again">Nouvelle série</button></div>';
+    } else {
+        html+='<p class="match-intro">Touchez un mot français, puis sa traduction anglaise.</p><div class="match-grid"><div><div class="match-col-title">🇫🇷 Français</div>'+
+        items.map(function(item){return '<button class="match-choice '+(item._matched?'matched':'')+' '+(S.transSelectedFr===item._matchId?'selected':'')+'" data-frmatch="'+item._matchId+'" '+(item._matched?'disabled':'')+'>'+(item._matched?'✓ ':'')+item.fr+'</button>';}).join('<div style="height:7px"></div>')+
+        '</div><div><div class="match-col-title">🇬🇧 English</div>'+
+        S.transEnglishOrder.map(function(item){return '<button class="match-choice '+(item._matched?'matched':'')+' '+(S.transSelectedEn===item._matchId?'selected':'')+'" data-enmatch="'+item._matchId+'" '+(item._matched?'disabled':'')+'>'+(item._matched?'✓ ':'')+item.en+'</button>';}).join('<div style="height:7px"></div>')+
+        '</div></div><div id="tc-feedback">'+(feedbackHTML||'')+'</div>';
+    }
+    document.getElementById('game-card').innerHTML=html;
+    document.getElementById('ctrl-area').innerHTML='<div class="btn-row"><button class="btn-nav" id="tc-menu">📋 Catégories</button><button class="btn-sound" id="tc-speak" '+(!S.transSelectedEn?'disabled':'')+'>🔊 Écouter</button><button class="btn-nav purple" id="tc-next" '+(done?'':'disabled')+'>Suivant ▶</button></div>';
     document.getElementById('tc-menu').addEventListener('click',renderTranslationMenu);
-    document.getElementById('tc-speak').addEventListener('click',function(){speak(item.en);});
+    document.getElementById('tc-speak').addEventListener('click',function(){const it=items.find(x=>x._matchId===S.transSelectedEn);if(it)speak(it.en);});
+    document.getElementById('tc-next').addEventListener('click',function(){if(done){S.transRound++;startTranslationRound();}});
+    const again=document.getElementById('tc-again'); if(again) again.addEventListener('click',function(){S.transRound++;startTranslationRound();});
+    const frButtons=document.querySelectorAll('[data-frmatch]');
+    frButtons.forEach(function(btn){btn.addEventListener('click',function(){S.transSelectedFr=this.dataset.frmatch;renderTranslationMatch(feedbackHTML);});});
+    const enButtons=document.querySelectorAll('[data-enmatch]');
+    enButtons.forEach(function(btn){btn.addEventListener('click',function(){
+        const chosen=this.dataset.enmatch;
+        if(!S.transSelectedFr){renderTranslationMatch('<div class="match-feedback bad">Choisissez d’abord un mot dans la colonne française.</div>');return;}
+        const fr=items.find(x=>x._matchId===S.transSelectedFr), en=items.find(x=>x._matchId===chosen);
+        if(!fr||!en||fr._matched||en._matched)return;
+        if(fr._matchId===en._matchId){
+            fr._matched=true; S.transMatches=(S.transMatches||0)+1; earnXP(3,'translation');
+            S.transSelectedFr=null; S.transSelectedEn=null;
+            renderTranslationMatch('<div class="match-feedback good">✨ Bravo ! <b>'+fr.fr+' = '+fr.en+'</b></div>');
+            if(typeof speak==='function') speak(fr.en);
+        } else {
+            S.transMistakes=(S.transMistakes||0)+1; S.transRoundErrors=(S.transRoundErrors||0)+1;
+            S.transSelectedEn=chosen;
+            renderTranslationMatch('<div class="match-feedback bad">Pas tout à fait. <b>'+fr.fr+'</b> ne signifie pas <b>'+en.en+'</b>.'+(fr.ex?' <br><span style="opacity:.9">Exemple : '+fr.ex+'</span>':'')+'<br>Réessayez : cherchez le sens du mot français.</div>');
+        }
+    });});
 }
 
 /* ─── CONVERSION — NAVIGATION ──────────────────────────────────── */
